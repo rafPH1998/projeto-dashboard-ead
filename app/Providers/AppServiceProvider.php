@@ -17,6 +17,11 @@ class AppServiceProvider extends ServiceProvider
             UserRepositoryInterface::class,
             UserRepository::class,
         );
+
+        $this->app->singleton(
+            CourseRepositoryInterface::class,
+            CourseRepository::class,
+        );
     }
 
     /**
