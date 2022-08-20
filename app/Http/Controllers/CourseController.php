@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Course\StoreCourse;
 use Illuminate\Http\Request;
 use App\Repositories\Eloquent\CourseRepository;
 use App\Repositories\Eloquent\UploadFile;
 
 class CourseController extends Controller
 {
-    public function __construct(protected CourseRepository $courseRepository)
+    public function __construct(protected CourseRepository $courseRepository, protected UploadFile $uploadFile)
     {
     }
 
@@ -39,9 +40,19 @@ class CourseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCourse $request)
     {
-        //
+        $data = $request->all();
+
+        if ($request->image) {
+            $data['image'] = $this->uploadFile->store($request->image, 'courses');
+        }
+
+        $this->courseRepository->create($data);
+
+        return redirect()
+            ->route('courses.index')
+            ->with('success', 'Curso cadastrado com sucesso');
     }
 
     /**
