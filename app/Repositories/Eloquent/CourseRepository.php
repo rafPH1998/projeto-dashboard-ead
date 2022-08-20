@@ -33,7 +33,7 @@ class CourseRepository implements CourseRepositoryInterface
 
     public function create(array $data): object
     {
-        
+        return $this->course->create($data);
     }
 
     public function update(string $id, array $data): object|null
