@@ -1,5 +1,3 @@
-@include('admin.includes.alerts')
-
 @csrf
 <div class="mt-2">
     <label class=" block text-sm text-gray-600" for="message">Foto do curso</label>
