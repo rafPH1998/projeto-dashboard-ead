@@ -1,7 +1,13 @@
 @csrf
-<div class="mt-2">
-    <label class=" block text-sm text-gray-600" for="message">Foto do curso</label>
-    <input class="w-full px-5  py-2 text-gray-700 bg-gray-200 rounded" type="file" name="image">
+<div class="">
+    @if (isset($course->image))
+        <div class="flex-shrink-0 w-40 h-40">
+            <img class="w-full h-full rounded-full" src="{{ url("storage/{$course->image}") }}">
+        </div>
+    @endif
+    <label class="block text-sm text-gray-600 mt-4" for="message">Nova Foto</label>
+    <input class="w-full px-5  py-2 text-gray-700 bg-gray-200 rounded" type="file" name="image">  
+
 </div>
 <div class="py-2">
     <label class="block text-sm text-gray-600" for="available">
