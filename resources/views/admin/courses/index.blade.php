@@ -30,10 +30,6 @@
                         </th>
                         <th
                             class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                            Criado em
-                        </th>
-                        <th
-                            class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                             Ações
                         </th>
                     </tr>
@@ -55,16 +51,13 @@
                                     </div>
                                 </div>
                             </td>
+
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                 <p class="text-gray-900 whitespace-no-wrap">
                                     {{$course->available ? 'Publicado' : 'Não Publicado'}}
                                 </p>
                             </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p class="text-gray-900 whitespace-no-wrap">
-                                    {{$course->created_at}}
-                                </p>
-                            </td>
+
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                 <a href="{{route('courses.edit', $course->id)}}">
                                     <span
@@ -72,6 +65,15 @@
                                         <span aria-hidden
                                             class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
                                         <span class="relative">Editar</span>
+                                    </span>
+                                </a>
+
+                                <a href="{{route('modules.index', $course->id)}}">
+                                    <span
+                                        class="relative inline-block px-3 py-1 font-semibold text-blue-900 leading-tight">
+                                        <span aria-hidden
+                                            class="absolute inset-0 bg-blue-200 opacity-50 rounded-full"></span>
+                                        <span class="relative">Modulos</span>
                                     </span>
                                 </a>
                             </td>
