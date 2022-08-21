@@ -39,6 +39,15 @@ class CourseRepository implements CourseRepositoryInterface
     public function update(string $id, array $data): object|null
     {
 
+        $course = $this->findById($id);
+
+        if (!$course) {
+            return null;
+        }
+
+        $course->update($data);
+
+        return $course;
     }
 
     public function delete(string $id): bool
