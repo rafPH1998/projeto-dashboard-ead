@@ -2,6 +2,19 @@
 
 namespace App\Providers;
 
+use App\Repositories\Eloquent\{
+    UserRepository,
+    CourseRepository,
+    ModuleRepository,
+};
+
+use App\Repositories\{
+    UserRepositoryInterface,
+    CourseRepositoryInterface,
+    ModuleRepositoryInterface,
+
+};
+
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,6 +34,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(
             CourseRepositoryInterface::class,
             CourseRepository::class,
+        );
+
+        $this->app->singleton(
+            ModuleRepositoryInterface::class,
+            ModuleRepository::class,
         );
     }
 
