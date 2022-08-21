@@ -1,8 +1,12 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\CourseController;
+use App\Http\Controllers\{
+    AdminController,
+    UserController,
+    CourseController,
+    ModuleController
+};
+
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/admin')->group(function() {
@@ -16,8 +20,12 @@ Route::prefix('/admin')->group(function() {
     /**
      * Routes Courses
      */
-    Route::resource('/courses', CourseController::class);
+    Route::resource('/courses', CourseController::class)->except('show');
 
+    /**
+     * Routes Modules
+     */
+    Route::resource('/courses/{id}/modules', ModuleController::class);
 
      /**
      * Routes Admins
