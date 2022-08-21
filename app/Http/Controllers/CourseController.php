@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Course\StoreCourse;
+use App\Http\Requests\Course\StoreUpdateCourse;
 use Illuminate\Http\Request;
 use App\Repositories\Eloquent\CourseRepository;
 use App\Repositories\Eloquent\UploadFile;
@@ -40,7 +40,7 @@ class CourseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCourse $request)
+    public function store(StoreUpdateCourse $request)
     {
         $data = $request->all();
 
@@ -61,10 +61,6 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -92,9 +88,23 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUpdateCourse $request, $id)
     {
-        //
+        $data = $request->only(['name', 'description']);
+
+        if ($request->image) {
+            $course = $this->courseRepository->findById($id);
+
+            if ($course && $course->image) {
+                $this->uploadFile->removeFile($course->image);
+            }
+
+            $data['image'] = $this->uploadFile->store($request->image, 'courses');
+        }
+
+        $this->courseRepository->update($id, $data);
+
+        return redirect()->route('courses.index')->with('success', 'Curso atualizado com sucesso');
     }
 
     /**
