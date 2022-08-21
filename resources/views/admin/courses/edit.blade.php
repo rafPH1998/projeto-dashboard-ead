@@ -4,7 +4,7 @@
 
 @section('content')
     <h1 class="text-3xl text-black pb-6">
-        Editar Curso: {{$course->name}}
+        Editar Curso: <b>{{$course->name}}</b>
     </h1>
     @include('admin.includes.alerts')
     <div class="flex flex-wrap">

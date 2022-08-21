@@ -33,11 +33,6 @@ class ModuleRepository implements ModuleRepositoryInterface
         return $this->modules->find($id);
     }
 
-    public function createByCourse(string $courseId, array $data): object
-    {
-        return $this->modules->create($data);
-    }
-
     public function update(string $id, array $data): object|null
     {
         $user = $this->findById($id);

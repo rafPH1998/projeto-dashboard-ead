@@ -76,6 +76,17 @@
                                         <span class="relative">Editar</span>
                                     </span>
                                 </a>
+                             
+                                <form  action="{{ route('users.destroy', $user->id) }}" method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button class="mt-2">
+                                        <span class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
+                                            <span aria-hidden class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
+                                            <span class="relative">Deletar</span>
+                                        </span>
+                                    </button>
+                                </form>
                             </td>
 
                         </tr>

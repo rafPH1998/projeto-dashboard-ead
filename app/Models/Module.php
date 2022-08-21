@@ -11,6 +11,7 @@ class Module extends Model
 
     protected $fillable = [
         'name',
+        'course_id'
     ];
 
     //um modulo pertence pertence a um curso

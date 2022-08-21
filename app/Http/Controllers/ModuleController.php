@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateModule;
 use App\Repositories\Eloquent\ModuleRepository;
+use App\Repositories\Eloquent\CourseRepository;
 use Illuminate\Http\Request;
 
 class ModuleController extends Controller
 {
-    public function __construct(protected ModuleRepository $module_repository)
+    public function __construct
+    (
+        protected ModuleRepository $module_repository,
+        protected CourseRepository $course_repository
+    )
     {
     }
 
@@ -16,9 +22,23 @@ class ModuleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($courseId)
+    public function index(Request $request, $courseId)
     {
-        dd($this->module_repository->getAllByCourse($courseId));
+        $course = $this->course_repository->findById($courseId);
+
+        if (!$course) {
+            return redirect()->back();
+        }
+        
+        $modules = $this->module_repository->getAllByCourse(
+            $courseId,
+            $request->get('filter', '')
+        );  
+    
+        return view('admin.courses.modules.index', [
+            'modules' => convertItemsOfArrayToObject($modules),
+            'course' => $course
+        ]);
     }
 
     /**
@@ -26,9 +46,14 @@ class ModuleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($courseId)
     {
-        //
+        $course = $this->course_repository->findById($courseId);
+        if (!$course) {
+            return redirect()->back();
+        }
+
+        return view('admin.courses.modules.create', compact('course'));
     }
 
     /**
@@ -37,9 +62,18 @@ class ModuleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdateModule $request, $courseId)
     {
-        //
+        $course = $this->course_repository->findById($courseId);
+        if (!$course) {
+            return redirect()->back();
+        }
+
+        $course->modules()->create($request->all());
+
+        return redirect()->route('modules.index', [
+            'id' => $courseId
+        ])->with('success', 'Módulo cadastrado com sucesso');
     }
 
     /**
