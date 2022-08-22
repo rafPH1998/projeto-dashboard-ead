@@ -4,7 +4,8 @@ use App\Http\Controllers\{
     AdminController,
     UserController,
     CourseController,
-    ModuleController
+    ModuleController,
+    LessonController
 };
 
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,11 @@ Route::prefix('/admin')->group(function() {
      * Routes Modules
      */
     Route::resource('/courses/{id}/modules', ModuleController::class);
+
+       /**
+     * Routes Lessons
+     */
+    Route::resource('/modules/{modules}/lessons', LessonController::class);
 
      /**
      * Routes Admins
