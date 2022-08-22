@@ -52,7 +52,13 @@ class CourseRepository implements CourseRepositoryInterface
 
     public function delete(string $id): bool
     {
+        $course = $this->findById($id);
 
+        if (!$course) {
+            return false;
+        }
+
+        return $course->delete();
     }
 
 }

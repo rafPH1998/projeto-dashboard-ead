@@ -13,6 +13,12 @@
     @include('admin.includes.alerts')
 
     <div class="w-full mt-12">
+
+        @include('admin.includes.form-search', [
+            'routerName' => 'modules.index',
+            'params' => $course->id
+        ])
+
         <p class="text-xl pb-3 flex items-center">
             <i class="fas fa-list mr-3"></i> Table Example
         </p>
@@ -42,7 +48,7 @@
                             </td>
 
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <a href="">
+                                <a href="{{ route('modules.edit', [$course->id, $module->id]) }}">
                                     <span
                                         class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                                         <span aria-hidden
@@ -51,7 +57,7 @@
                                     </span>
                                 </a>
 
-                                <a href="{{route('modules.index', $module->id)}}">
+                                <a href="{{route('lessons.index', $module->id)}}">
                                     <span
                                         class="relative inline-block px-3 py-1 font-semibold text-blue-900 leading-tight">
                                         <span aria-hidden
@@ -70,5 +76,7 @@
                 </tbody>
             </table>
         </div>
+
+        <a href="{{route('courses.index')}}" class="mt-5 px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="button">Voltar</a>
     </div>  
 @endsection

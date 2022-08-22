@@ -12,6 +12,7 @@ use App\Repositories\{
     UserRepositoryInterface,
     CourseRepositoryInterface,
     ModuleRepositoryInterface,
+    LessonRepositoryInterface,
 
 };
 
@@ -39,6 +40,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(
             ModuleRepositoryInterface::class,
             ModuleRepository::class,
+        );
+
+        $this->app->singleton(
+            LessonRepositoryInterface::class,
+            LessonRepository::class,
         );
     }
 

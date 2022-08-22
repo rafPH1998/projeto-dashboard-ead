@@ -9,15 +9,16 @@ use App\Repositories\Eloquent\UploadFile;
 
 class CourseController extends Controller
 {
-    public function __construct(protected CourseRepository $courseRepository, protected UploadFile $uploadFile)
+    public function __construct(
+        protected CourseRepository $courseRepository, 
+        protected UploadFile $uploadFile
+    )
     {
     }
 
     public function index(Request $request)
     {
-        $courses = $this->courseRepository->getAll(
-            $request->get('filter', '')
-        );        
+        $courses = $this->courseRepository->getAll($request->filter ?? '');     
 
         return view('admin.courses.index', [
             'courses' => convertItemsOfArrayToObject($courses)
@@ -115,6 +116,7 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->courseRepository->delete($id);
+        return redirect()->route('courses.index')->with('success', 'Curso excluido com sucesso');
     }
 }

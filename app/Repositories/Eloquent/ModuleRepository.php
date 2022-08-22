@@ -18,7 +18,6 @@ class ModuleRepository implements ModuleRepositoryInterface
         $modules = $this->modules
                         ->where(function ($query) use ($filter) {
                             if ($filter) {
-                                $query->where('email', $filter);
                                 $query->Orwhere('name', 'LIKE', "%{$filter}%");
                             }
                         })

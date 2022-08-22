@@ -15,10 +15,8 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $users = $this->repository->getAll(
-            $request->get('filter', '')
-        );        
-
+        $users = $this->repository->getAll($request->filter ?? '');        
+   
         return view('admin.users.index', [
             'users' => convertItemsOfArrayToObject($users)
         ]);

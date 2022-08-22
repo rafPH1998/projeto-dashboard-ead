@@ -13,6 +13,9 @@
     @include('admin.includes.alerts')
 
     <div class="w-full mt-12">
+        
+        @include('admin.includes.form-search', ['routerName' => 'courses.index'])
+
         <p class="text-xl pb-3 flex items-center">
             <i class="fas fa-list mr-3"></i> Table Example
         </p>
@@ -76,6 +79,17 @@
                                         <span class="relative">Modulos</span>
                                     </span>
                                 </a>
+
+                                <form  action="{{ route('courses.destroy', $course->id) }}" method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button class="mt-2">
+                                        <span class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
+                                            <span aria-hidden class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
+                                            <span class="relative">Deletar curso</span>
+                                        </span>
+                                    </button>
+                                </form>
                             </td>
 
                         </tr>
