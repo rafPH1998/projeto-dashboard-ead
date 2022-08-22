@@ -9,8 +9,7 @@ use Illuminate\Http\Request;
 
 class ModuleController extends Controller
 {
-    public function __construct
-    (
+    public function __construct(
         protected ModuleRepository $module_repository,
         protected CourseRepository $course_repository
     )
@@ -32,7 +31,7 @@ class ModuleController extends Controller
         
         $modules = $this->module_repository->getAllByCourse(
             $courseId,
-            $request->get('filter', '')
+            $request->filter ?? ''
         );  
     
         return view('admin.courses.modules.index', [
@@ -69,7 +68,7 @@ class ModuleController extends Controller
             return redirect()->back();
         }
 
-        $course->modules()->create($request->all());
+        $course->modules()->create($request->validated());
 
         return redirect()->route('modules.index', [
             'id' => $courseId
@@ -93,9 +92,9 @@ class ModuleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($courseId, $moduleId)
     {
-        //
+        //dd('curso: '.$courseId, 'modulo: '. $moduleId . );
     }
 
     /**
