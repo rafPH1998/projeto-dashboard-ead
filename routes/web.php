@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\{
-    AdminController,
     UserController,
     CourseController,
     ModuleController,
     LessonController,
     SupportController,
+    ReplySupportController
 };
 
 use Illuminate\Support\Facades\Route;
@@ -41,7 +42,17 @@ Route::prefix('/admin')->group(function() {
     Route::resource('/supports', SupportController::class);
 
      /**
+     * Routes ReplySupports
+     */
+    Route::post('/supports/{id}/reply', [ReplySupportController::class, 'store'])->name('replies.store');
+
+     /**
      * Routes Admins
      */
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/create', [AdminController::class, 'create'])->name('admin.create');
+    Route::post('/store', [AdminController::class, 'store'])->name('admin.store');
+    Route::get('/{admin}/edit', [AdminController::class, 'edit'])->name('admin.edit');
+    Route::put('/{admin}/edit', [AdminController::class, 'update'])->name('admin.update');
+    Route::delete('/{admin}/destroy', [AdminController::class, 'destroy'])->name('admin.destroy');
 });

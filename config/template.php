@@ -14,6 +14,11 @@ return [
             'icon' => 'fas fa-users'
         ],
         [
+            'name' => 'Admins',
+            'url' => '/admin',
+            'icon' => 'fas fa-robot'
+        ],
+        [
             'name' => 'Cursos',
             'url' => '/admin/courses',
             'icon' => 'fas fa-video'

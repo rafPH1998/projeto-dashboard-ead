@@ -50,9 +50,15 @@ class SupportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($supports)
     {
-        //
+        $support = $this->support_repository->findById($supports);
+
+        if (!$support) {
+            return redirect()->back();
+        }
+
+        return view('admin.supports.details', compact('support'));
     }
 
     /**

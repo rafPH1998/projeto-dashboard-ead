@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('reply_support', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('CASCADE'); //um suporte vai pertencer a um usuario
-            $table->foreignId('adimin_id')->constrained('users')->onDelete('CASCADE'); //um suporte vai pertencer a um usuario
+            $table->foreignId('admin_id')->constrained('users')->onDelete('CASCADE'); //um suporte vai pertencer a um usuario
             $table->foreignId('support_id')->constrained('supports')->onDelete('CASCADE'); //um suporte vai pertencer a uma aula
             $table->text('description');
             $table->timestamps();

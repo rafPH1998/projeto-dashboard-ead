@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StoreUser extends FormRequest
+class StoreUpdateAdmin extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -20,7 +20,7 @@ class StoreUser extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, mixed>
+     * @return array
      */
     public function rules()
     {
@@ -29,7 +29,7 @@ class StoreUser extends FormRequest
             'email' => [
                 'email',
                 'required',
-                Rule::unique('users')->ignore($this->user)
+                Rule::unique('admins')->ignore($this->admin)
             ],
             'password' => 'required|min:3|max:15',
             'image' => 'nullable|image|max:1024'

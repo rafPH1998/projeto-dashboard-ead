@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\Eloquent\UserRepository;
-use App\Http\Requests\StoreUser;
+use App\Http\Requests\StoreUpdateUser;
 use App\Repositories\Eloquent\UploadFile;
 
 class UserController extends Controller
@@ -27,7 +27,7 @@ class UserController extends Controller
         return view('admin.users.create');
     }
 
-    public function store(StoreUser $request, UploadFile $uploadFile)
+    public function store(StoreUpdateUser $request, UploadFile $uploadFile)
     {
         $data = $request->validated();
         $data['password'] = bcrypt($request->password);
@@ -56,7 +56,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(UploadFile $uploadFile, StoreUser $request, $id)
+    public function update(UploadFile $uploadFile, StoreUpdateUser $request, $id)
     {
         $data = $request->only(['name', 'email']);
 

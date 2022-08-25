@@ -18,6 +18,6 @@ class UploadFile
             return Storage::delete($filePath);
         }
 
-        return false;
+        return true;
     }
 }
