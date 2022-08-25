@@ -95,7 +95,7 @@ class CourseController extends Controller
 
         if ($request->image) {
             $course = $this->courseRepository->findById($id);
-
+            
             if ($course && $course->image) {
                 $this->uploadFile->removeFile($course->image);
             }
