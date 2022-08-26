@@ -12,11 +12,7 @@ class LessonController extends Controller
     public function __construct(
         protected ModuleRepository $module_repository,
         protected LessonRepository $lesson_repository
-    )
-    {
-    }
-
-
+    ){}
     /**
      * Display a listing of the resource.
      *

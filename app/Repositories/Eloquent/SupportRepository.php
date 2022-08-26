@@ -8,10 +8,9 @@ use App\Repositories\SupportRepositoryInterface;
 class SupportRepository implements SupportRepositoryInterface
 {
 
-    public function __construct(protected Support $supports)
-    {
-
-    }
+    public function __construct(
+        protected Support $supports
+    ){}
 
     public function getSupports(string $status = ''): array
     {
@@ -23,11 +22,18 @@ class SupportRepository implements SupportRepositoryInterface
         return $supports->toArray();
     }
 
-    public function findById(string $id): object|null
+    public function findByIdSupport(string $id): object|null
     {
         return $this->supports
-                ->with(['user', 'lesson', 'replies'])
-                ->find($id);
+                    ->with([
+                        'user', 
+                        'lesson', 
+                        'replies' => [
+                            'user',
+                            'admin'
+                        ],
+                    ])
+                    ->find($id);
     }
 
     

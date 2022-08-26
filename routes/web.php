@@ -12,7 +12,9 @@ use App\Http\Controllers\{
 
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('/admin')->group(function() {
+Route::prefix('/admin')
+    ->middleware(['auth'])
+    ->group(function() {
     
     /**
      * Routes Users
@@ -56,3 +58,5 @@ Route::prefix('/admin')->group(function() {
     Route::put('/{admin}/edit', [AdminController::class, 'update'])->name('admin.update');
     Route::delete('/{admin}/destroy', [AdminController::class, 'destroy'])->name('admin.destroy');
 });
+
+require __DIR__.'/auth.php';

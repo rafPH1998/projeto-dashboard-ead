@@ -8,10 +8,9 @@ use App\Repositories\LessonRepositoryInterface;
 class LessonRepository implements LessonRepositoryInterface
 {
 
-    public function __construct(protected Lesson $lesson)
-    {
-
-    }
+    public function __construct(
+        protected Lesson $lesson
+    ){}
 
 
     public function getAllByModule(string $moduleId, string $filter = ''): array

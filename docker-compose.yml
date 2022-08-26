@@ -47,8 +47,6 @@ services:
         networks: 
             - laravel-9
 
-    # queue
-
     # redis
     redis:
         container_name: redis

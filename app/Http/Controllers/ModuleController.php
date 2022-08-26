@@ -12,9 +12,7 @@ class ModuleController extends Controller
     public function __construct(
         protected ModuleRepository $module_repository,
         protected CourseRepository $course_repository
-    )
-    {
-    }
+    ){}
 
     /**
      * Display a listing of the resource.

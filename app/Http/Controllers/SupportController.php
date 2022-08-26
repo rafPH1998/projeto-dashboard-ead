@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 class SupportController extends Controller
 {
 
-    public function __construct(protected SupportRepository $support_repository)
-    {
-    }
+    public function __construct(
+        protected SupportRepository $support_repository
+    ){}
 
     public function index(Request $request)
     {
@@ -52,7 +52,7 @@ class SupportController extends Controller
      */
     public function show($supports)
     {
-        $support = $this->support_repository->findById($supports);
+        $support = $this->support_repository->findByIdSupport($supports);
 
         if (!$support) {
             return redirect()->back();

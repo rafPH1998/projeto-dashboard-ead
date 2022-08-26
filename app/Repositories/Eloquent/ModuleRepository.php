@@ -8,10 +8,9 @@ use App\Repositories\ModuleRepositoryInterface;
 class ModuleRepository implements ModuleRepositoryInterface
 {
 
-    public function __construct(protected Module $modules)
-    {
-
-    }
+    public function __construct(
+        protected Module $modules
+    ){}
 
     public function getAllByCourse(string $courseId, string $filter = ''): array
     {

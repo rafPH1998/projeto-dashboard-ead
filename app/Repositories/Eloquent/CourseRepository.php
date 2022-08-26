@@ -8,10 +8,9 @@ use App\Repositories\CourseRepositoryInterface;
 class CourseRepository implements CourseRepositoryInterface
 {
 
-    public function __construct(protected Course $course)
-    {
-
-    }
+    public function __construct(
+        protected Course $course
+    ){}
 
 
     public function getAll(string $filter = ''): array

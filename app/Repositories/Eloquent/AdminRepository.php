@@ -8,10 +8,9 @@ use App\Repositories\AdminRepositoryInterface;
 class AdminRepository implements AdminRepositoryInterface
 {
 
-    public function __construct(protected Admin $admin)
-    {
-
-    }
+    public function __construct(
+        protected Admin $admin
+    ){}
 
     public function getAll(string $filter = ''): array
     {

@@ -12,9 +12,7 @@ class CourseController extends Controller
     public function __construct(
         protected CourseRepository $courseRepository, 
         protected UploadFile $uploadFile
-    )
-    {
-    }
+    ){}
 
     public function index(Request $request)
     {

@@ -6,6 +6,8 @@
 
 <div class="w-full">
 
+    @include('admin.includes.alerts')
+    
     <div class="bg-white overflow-auto">
         <!-- component -->
         <div class="flex-1 p:2 sm:p-6 justify-between flex flex-col h-screen">
