@@ -3,7 +3,9 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Support;
+use App\Repositories\Presenters\PaginationPresenter;
 use App\Repositories\SupportRepositoryInterface;
+use Illuminate\Support\Facades\DB;
 
 class SupportRepository implements SupportRepositoryInterface
 {
@@ -12,16 +14,22 @@ class SupportRepository implements SupportRepositoryInterface
         protected Support $supports
     ){}
 
-    public function getSupports(string $status = ''): array
+    public function getSupports(string $status = '', int $page = 1): PaginationPresenter
     {
+
         $supports = $this->supports
                         ->where('status', $status)
                         ->with(['lesson', 'user'])
-                        ->get();
-
-        return $supports->toArray();
+                        ->paginate(10);
+                        
+        return new PaginationPresenter($supports);
     }
 
+    public function search(array $filter = []): array
+    {
+
+    }
+    
     public function findByIdSupport(string $id): object|null
     {
         return $this->supports

@@ -18,7 +18,7 @@ class SupportFactory extends Factory
      */
     public function definition()
     {
-        $statusOptions = ['P', 'A', 'C'];
+        $statusOptions = ['pendente', 'aguardando', 'concluido'];
         shuffle($statusOptions);
 
         return [

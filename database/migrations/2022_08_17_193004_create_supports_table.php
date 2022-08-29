@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('CASCADE'); //um suporte vai pertencer a um usuario
             $table->foreignId('lesson_id')->constrained('lessons')->onDelete('CASCADE'); //um suporte vai pertencer a uma aula
             $table->text('description');
-            $table->enum('status', ['P', 'A', 'C'])->default('A');
+            $table->enum('status', ['pendente', 'aguardando', 'concluido'])->default('aguardando');
             $table->timestamps();
         });
     }
