@@ -52,6 +52,7 @@ Route::prefix('/admin')
      * Routes Admins
      */
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+    
     Route::get('/create', [AdminController::class, 'create'])->name('admin.create');
     Route::post('/store', [AdminController::class, 'store'])->name('admin.store');
     Route::get('/{admin}/edit', [AdminController::class, 'edit'])->name('admin.edit');
