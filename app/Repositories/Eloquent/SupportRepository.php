@@ -14,14 +14,21 @@ class SupportRepository implements SupportRepositoryInterface
         protected Support $supports
     ){}
 
-    public function getSupports(string $status = '', int $page = 1): PaginationPresenter
+    public function getSupports(string $status = ''): PaginationPresenter
     {
 
-        $supports = $this->supports
-                        ->where('status', $status)
-                        ->with(['lesson', 'user'])
-                        ->paginate(10);
+        // $supports = $this->supports
+        //                 ->where('status', $status)
+        //                 ->with(['lesson', 'user'])
+        //                 ->paginate(10);
                         
+        $supports = $this->supports
+                ->where('status', $status)
+                ->join('users', 'users.id', '=', 'supports.user_id')
+                ->Orwhere('users.name', $status)
+                ->with(['lesson', 'user'])
+                ->paginate(1);
+
         return new PaginationPresenter($supports);
     }
 

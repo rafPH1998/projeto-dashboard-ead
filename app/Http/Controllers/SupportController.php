@@ -24,7 +24,6 @@ class SupportController extends Controller
                     ->support_repository
                     ->getSupports(
                         status: $request->get('status', 'pendente'),
-                        page: (int) $request->get('page', 1)
                     );
                 
         $optionsStatus = SupportEnum::cases();
