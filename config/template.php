@@ -5,7 +5,7 @@ return [
     'menus' => [
         [
             'name' => 'Home',
-            'url' => '/admin',
+            'url' => '/admin/dashboard',
             'icon' => 'fas fa-tachometer-alt'
         ],
         [
