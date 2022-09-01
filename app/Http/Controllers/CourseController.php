@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Course\StoreUpdateCourse;
+use App\Repositories\CourseRepositoryInterface;
 use Illuminate\Http\Request;
-use App\Repositories\Eloquent\CourseRepository;
 use App\Repositories\Eloquent\UploadFile;
 
 class CourseController extends Controller
 {
     public function __construct(
-        protected CourseRepository $courseRepository, 
+        protected CourseRepositoryInterface $courseRepository, 
         protected UploadFile $uploadFile
     ){}
 
