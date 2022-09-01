@@ -3,20 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreReplySupport;
-use App\Models\Support;
-use App\Repositories\Eloquent\ReplyRepository;
-use App\Repositories\Eloquent\SupportRepository;
 use Illuminate\Http\Request;
+use App\Events\SupportReplied;
+use App\Repositories\ReplyRepositoryInterface;
+use App\Repositories\SupportRepositoryInterface;
 
 class ReplySupportController extends Controller
 {
     public function __construct(
-        protected SupportRepository $support_repository,
-        protected ReplyRepository $reply_repository
+        protected SupportRepositoryInterface $support_repository,
+        protected ReplyRepositoryInterface $reply_repository
     ){}
 
     public function store(StoreReplySupport $request, $supportId)
     {
+        $user = auth()->user();
+
         $support = $this->support_repository->findByIdSupport($supportId);
 
         if (!$support) {
@@ -25,10 +27,11 @@ class ReplySupportController extends Controller
 
         $data = $request->only('description', 'support_id');
 
-        $data['user_id'] = 2;
-        $data['admin_id'] = 2;
+        $data['admin_id'] = $user->id;
+        $data['user_id'] = $data['admin_id'];
 
-        $support->replies()->create($data);
+        $replySupport = $support->replies()->create($data);
+        event(new SupportReplied($replySupport));
 
         return redirect()->route('supports.show', $supportId);
     }

@@ -3,22 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Enums\SupportEnum;
-use App\Repositories\Eloquent\LessonRepository;
-use App\Repositories\Eloquent\SupportRepository;
-use App\Repositories\Eloquent\UserRepository;
+
+use App\Repositories\LessonRepositoryInterface;
+use App\Repositories\SupportRepositoryInterface;
+use App\Repositories\UserRepositoryInterface;
 use Illuminate\Http\Request;
 
 class SupportController extends Controller
 {
 
     public function __construct(
-        protected SupportRepository $support_repository,
-        protected LessonRepository $lesson_repository,
-        protected UserRepository $user_repository,
+        protected SupportRepositoryInterface $support_repository,
+        protected LessonRepositoryInterface $lesson_repository,
+        protected UserRepositoryInterface $user_repository,
     ){}
 
     public function index(Request $request)
     {
+        //dd($request->all());
         
         $supports = $this
                     ->support_repository

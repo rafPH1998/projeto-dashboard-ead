@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\Eloquent\UserRepository;
 use App\Http\Requests\StoreUpdateUser;
 use App\Repositories\Eloquent\UploadFile;
+use App\Repositories\UserRepositoryInterface;
 
 class UserController extends Controller
 {
-    public function __construct(protected UserRepository $repository)
+    public function __construct(protected UserRepositoryInterface $repository)
     {
     }
 
@@ -70,13 +70,17 @@ class UserController extends Controller
 
         $this->repository->update($id, $data);
 
-        return redirect()->route('users.index')->with('success', 'Usuário atualizado com sucesso');
+        return redirect()
+            ->route('users.index')
+            ->with('success', 'Usuário atualizado com sucesso');
     }
 
     public function destroy($id)
     {
         $this->repository->delete($id);
-        return redirect()->route('users.index')->with('success', 'Usuário excluido com sucesso');
+        return redirect()
+                ->route('users.index')
+                ->with('success', 'Usuário excluido com sucesso');
     }
 
 }
