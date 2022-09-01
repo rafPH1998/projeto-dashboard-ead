@@ -3,14 +3,15 @@
     <div class="w-1/2"></div>
     <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
         <button @click="isOpen = !isOpen"
-            class="realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
+            class="mr-2 realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
             <img src="{{url('images/user.png')}}">
         </button>
         <button x-show="isOpen" @click="isOpen = false"
             class="h-full w-full fixed inset-0 cursor-default"></button>
+            <p class="mt-2">Bem vindo, {{ $firstName }} </p>
         <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
-            <a href="#" class="block px-4 py-2 account-link hover:text-white">Minha Conta</a>
-            <a href="#" class="block px-4 py-2 account-link hover:text-white">Sair</a>
+            <a href="{{ route('admin.myAccount') }}" class="block px-4 py-2 account-link hover:text-white">Minha Conta</a>
+            <a href="{{ route('logout') }}" class="block px-4 py-2 account-link hover:text-white">Sair</a>
         </div>
     </div>
 </header>
@@ -36,9 +37,5 @@
                 {{ $menu['name'] }}
             </a>
         @endforeach
-        <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-            <i class="fas fa-sign-out-alt mr-3"></i>
-            Sair
-        </a>
     </nav>
 </header>
