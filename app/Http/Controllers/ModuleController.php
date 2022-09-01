@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUpdateModule;
-use App\Repositories\Eloquent\ModuleRepository;
-use App\Repositories\Eloquent\CourseRepository;
+use App\Repositories\CourseRepositoryInterface;
+use App\Repositories\ModuleRepositoryInterface;
 use Illuminate\Http\Request;
 
 class ModuleController extends Controller
 {
     public function __construct(
-        protected ModuleRepository $module_repository,
-        protected CourseRepository $course_repository
+        protected ModuleRepositoryInterface $module_repository,
+        protected CourseRepositoryInterface $course_repository
     ){}
 
     /**
