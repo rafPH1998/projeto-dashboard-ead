@@ -71,25 +71,29 @@
                                 </p>
                             </td>
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <a href="{{route('admin.edit', $admin->id)}}">
-                                    <span
-                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                        <span aria-hidden
-                                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                        <span class="relative">Editar</span>
-                                    </span>
-                                </a>
-                             
-                                <form  action="{{ route('admin.destroy', $admin->id) }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button class="mt-2">
-                                        <span class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
-                                            <span aria-hidden class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
-                                            <span class="relative">Deletar</span>
+                                @if($user->id == $admin->id)
+                                    <a href="{{route('admin.edit', $admin->id)}}">
+                                        <span
+                                            class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                            <span aria-hidden
+                                                class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+                                            <span class="relative">Editar</span>
                                         </span>
-                                    </button>
-                                </form>
+                                    </a>
+                                @endif
+                             
+                                @if($user->id == $admin->id)
+                                    <form  action="{{ route('admin.destroy', $admin->id) }}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button class="mt-2">
+                                            <span class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
+                                                <span aria-hidden class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
+                                                <span class="relative">Deletar</span>
+                                            </span>
+                                        </button>
+                                    </form>
+                                @endif
                             </td>
 
                         </tr>
