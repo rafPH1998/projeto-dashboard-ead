@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUpdateLesson;
 use Illuminate\Http\Request;
-use App\Repositories\Eloquent\ModuleRepository;
-use App\Repositories\Eloquent\LessonRepository;
+use App\Repositories\LessonRepositoryInterface;
+use App\Repositories\ModuleRepositoryInterface;
 
 class LessonController extends Controller
 {
     public function __construct(
-        protected ModuleRepository $module_repository,
-        protected LessonRepository $lesson_repository
+        protected ModuleRepositoryInterface $module_repository,
+        protected LessonRepositoryInterface $lesson_repository
     ){}
     /**
      * Display a listing of the resource.
