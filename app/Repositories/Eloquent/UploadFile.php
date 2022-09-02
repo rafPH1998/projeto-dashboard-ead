@@ -9,7 +9,7 @@ class UploadFile
 {
     public function store(UploadedFile $file, string $path): string
     {
-        return $file->store($path,  ['disk' => 'public']);
+        return $file->store($path);
     }
 
     public function removeFile(string $filePath): bool
