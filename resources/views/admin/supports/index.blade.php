@@ -104,7 +104,7 @@
         <ul class="inline-flex -space-x-px mt-10">
             @if($supports->currentPage() > 1)
                 <li>
-                    <a href="?page={{ $supports->currentPage() - 1 }}&status={{ request('status', 'P') }}" class="py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Anterior</a>
+                    <a href="?page={{ $supports->currentPage() - 1 }}&status={{ request('status', 'pendente') }}" class="py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Anterior</a>
                 </li>
             @endif
             <li>
@@ -112,7 +112,7 @@
             </li>
             @if($supports->currentPage() < $supports->lastPage())
                 <li>
-                    <a href="?page={{ $supports->currentPage() + 1 }}&status={{ request('status', 'P') }}" class="py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Próxima</a>
+                    <a href="?page={{ $supports->currentPage() + 1 }}&status={{ request('status', 'pendente') }}" class="py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Próxima</a>
                 </li>
             @endif
         </ul>

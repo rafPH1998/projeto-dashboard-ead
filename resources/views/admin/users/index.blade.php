@@ -47,7 +47,7 @@
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                 <div class="flex items-center">
                                     <div class="flex-shrink-0 w-10 h-10">
-                                        <img class="w-full h-full rounded-full" src="{{ $user->image ? url("storage/{$user->image}") : url('images/user.png') }}">
+                                        <img class="w-full h-full rounded-full" src="{{ $user->image ? $user->image : url('images/user.png') }}">
                                     </div>
                                     <div class="ml-3">
                                         <p class="text-gray-900 whitespace-no-wrap">
