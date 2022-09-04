@@ -52,5 +52,25 @@ class StoreUpdateUser extends FormRequest
 
         return $rules;
     }
+
+    public function attributes()
+    {
+        return [
+            'name' => 'nome',
+            'min' => 'mínimo',
+            'max' => 'máximo',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'required' => 'Campo :attribute é obrigatório!',
+            'min' => 'O campo :attribute deve conter o máximo de :min caracteres!',
+            'email' => 'O campo e-mail deve ser um endereço de e-mail válido!',
+            'max' => 'O campo :attribute deve conter o máximo de :max caracteres!',
+            'unique' => 'Esse e-mail já se encontra cadastrado na base do sistema!'
+        ];
+    }
 }
 
