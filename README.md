@@ -5,25 +5,28 @@ Esse projeto foi de grande aprendizado e fortificou os conhecimentos, principalm
 
 Um dos principais conceitos que foi passado e desenvolvido ao longo desse projeto foi:
 
-- Blade e tailwind css
-- Relacionamentos entre tabelas no banco de dados com Mysql;
-- Accessors & Mutators
-- Casts
-- Events, Listeners e E-mails
-- Autenticação
-- Conceito de repositorys, presenters e interfaces
-- Criar, editar e deletar dados
-- Filtros de usuários
-- Filtros de cursos
-- Filtros de aulas
-- Filtros de suporte por status(pendente, concluido ou aguardando)
-- Filtros de módulos
+[:white_check_mark:] Blade e tailwind css
+[:white_check_mark:] Relacionamentos entre tabelas no banco de dados com Mysql;
+[:white_check_mark:] Accessors & Mutators
+[:white_check_mark:] Casts
+[:white_check_mark:] Events, Listeners e E-mails
+[:white_check_mark:] Autenticação
+[:white_check_mark:] Conceito de repositorys, presenters e interfaces
+[:white_check_mark:] Criar, editar e deletar dados
+[:white_check_mark:] Filtros de usuários
+[:white_check_mark:] Filtros de cursos
+[:white_check_mark:] Filtros de aulas
+[:white_check_mark:] Filtros de suporte por status(pendente, concluido ou aguardando)
+[:white_check_mark:] Filtros de módulos
+
+Features para implementar
+[x] Select mostrar todas as duvidas
+[x] Refatorar front em Vuejs e Inertia
+[x] Escrever testes
 
 How to start the project
 
 docker-compose up -d
-
-
 
 docker exec container bash
 cp .env.example .env 
