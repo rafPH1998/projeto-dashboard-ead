@@ -20,12 +20,10 @@ class SupportController extends Controller
 
     public function index(Request $request)
     {
-        //dd($request->all());
-        
         $supports = $this
                     ->support_repository
                     ->getSupports(
-                        status: $request->get('status', 'pendente'),
+                        $request->only(['status', 'filter'])
                     );
                 
         $optionsStatus = SupportEnum::cases();

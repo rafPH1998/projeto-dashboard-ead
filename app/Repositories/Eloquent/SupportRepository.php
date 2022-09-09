@@ -5,6 +5,7 @@ namespace App\Repositories\Eloquent;
 use App\Models\Support;
 use App\Repositories\Presenters\PaginationPresenter;
 use App\Repositories\SupportRepositoryInterface;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 
 class SupportRepository implements SupportRepositoryInterface
@@ -14,27 +15,20 @@ class SupportRepository implements SupportRepositoryInterface
         protected Support $supports
     ){}
 
-    public function getSupports(string $status = ''): PaginationPresenter
+    public function getSupports(array|null $status = []): PaginationPresenter
     {
-
-        // $supports = $this->supports
-        //                 ->where('status', $status)
-        //                 ->with(['lesson', 'user'])
-        //                 ->paginate(10);
-                        
         $supports = $this->supports
-                ->where('status', $status)
-                ->join('users', 'users.id', '=', 'supports.user_id')
-                ->Orwhere('users.name', $status)
-                ->with(['lesson', 'user'])
-                ->paginate(1);
+                    ->join('users', 'users.id', '=', 'supports.user_id')
+                    ->join('lessons', 'lessons.id', '=', 'supports.lesson_id')
+                    ->when($status, function ($query) use ($status) {
+                        $query->where('status', $status);
+                        $query->orWhere('users.name', $status);
+                        $query->orWhere('lessons.name', $status);       
+                    })
+                    ->with(['lesson', 'user'])
+                    ->paginate();
 
         return new PaginationPresenter($supports);
-    }
-
-    public function search(array $filter = []): array
-    {
-
     }
     
     public function findByIdSupport(string $id): object|null
