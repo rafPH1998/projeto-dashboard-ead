@@ -1,4 +1,4 @@
-Resumo:
+### Resumo:
 
 ```sh
 Esse projeto foi desenvolvido afins de estudos, junto com o professor/mentor Carlos Ferreira CTO-Founder da especializaTi.
@@ -12,7 +12,7 @@ e consolidando junto com o Laravel.
 Podendo também ser aplicados testes unitários, algo que ainda estou em processo de evolução.
 ```
 
-Um dos principais conceitos que foi passado e desenvolvido ao longo desse projeto foi:
+### Um dos principais conceitos que foi passado e desenvolvido ao longo desse projeto foi:
 
 ```sh
 [x] Blade e tailwind css
@@ -30,14 +30,14 @@ Um dos principais conceitos que foi passado e desenvolvido ao longo desse projet
 [x] Filtros de módulos
 ```
 
-Features para implementar
+### Features para implementar
 ```sh
 [x] Select mostrar todas as duvidas
 [x] Refatorar front em Vuejs e Inertia
 [x] Escrever testes
 ```
 
-Atualize as variáveis de ambiente do arquivo .env
+### Atualize as variáveis de ambiente do arquivo .env
 ```dosini
 APP_NAME=Teste
 APP_URL=http://localhost:8180
@@ -59,25 +59,25 @@ REDIS_PORT=6379
 ```
 
 
-Suba os containers do projeto
+### Suba os containers do projeto
 ```sh
 docker-compose up -d
 ```
 
 
-Acessar o container
+### Acessar o container
 ```sh
 docker-compose exec app bash
 ```
 
 
-Instalar as dependências do projeto
+### Instalar as dependências do projeto
 ```sh
 composer install
 ```
 
 
-Gerar a key do projeto Laravel
+### Gerar a key do projeto Laravel
 ```sh
 php artisan key:generate
 ```
