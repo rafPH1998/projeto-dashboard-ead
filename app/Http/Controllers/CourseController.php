@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Course\StoreUpdateCourse;
+use App\Models\Course;
 use App\Repositories\CourseRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Repositories\Eloquent\UploadFile;
@@ -16,57 +17,40 @@ class CourseController extends Controller
 
     public function index(Request $request)
     {
-        $courses = $this->courseRepository->getAll($request->filter ?? '');     
+        $courses = $this->courseRepository
+                        ->getAll($request->filter ?? '');     
 
         return view('admin.courses.index', [
             'courses' => convertItemsOfArrayToObject($courses)
-        ]);
+        ]); 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('admin.courses.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreUpdateCourse $request)
+    public function store(Course $course, StoreUpdateCourse $request)
     {
-        $data = $request->all();
+        $course->fill([
+            'available'   => $request->get('available'),
+            'name'        => $request->get('name'),
+            'description' => $request->get('description'),
+            'image'       => $request->image
+        ]);
 
-        if ($request->image) {
-            $data['image'] = $this->uploadFile->store($request->image, 'courses');
+        if ($course['image']) {
+            $course['image'] = $this->uploadFile->store($request->image, 'courses');
         }
 
-        $this->courseRepository->create($data);
+        $course->save();
 
         return redirect()
             ->route('courses.index')
             ->with('success', 'Curso cadastrado com sucesso');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $course = $this->courseRepository->findById($id);
@@ -80,41 +64,35 @@ class CourseController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(StoreUpdateCourse $request, $id)
     {
         $data = $request->only(['name', 'description']);
 
         if ($request->image) {
-            $course = $this->courseRepository->findById($id);
+            $course = $this->courseRepository
+                            ->findById($id);
             
             if ($course && $course->image) {
-                $this->uploadFile->removeFile($course->image);
+                $this->uploadFile
+                    ->removeFile($course->image);
             }
 
-            $data['image'] = $this->uploadFile->store($request->image, 'courses');
+            $data['image'] = $this->uploadFile
+                                    ->store($request->image, 'courses');
         }
 
         $this->courseRepository->update($id, $data);
 
-        return redirect()->route('courses.index')->with('success', 'Curso atualizado com sucesso');
+        return redirect()
+                ->route('courses.index')
+                ->with('success', 'Curso atualizado com sucesso');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $this->courseRepository->delete($id);
-        return redirect()->route('courses.index')->with('success', 'Curso excluido com sucesso');
+        return redirect()
+                    ->route('courses.index')
+                    ->with('success', 'Curso excluido com sucesso');
     }
 }
