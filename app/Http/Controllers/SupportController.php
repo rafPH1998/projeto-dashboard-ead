@@ -25,7 +25,6 @@ class SupportController extends Controller
                     ->getSupports(
                         $request->only(['status', 'filter'])
                     );
-                
         $optionsStatus = SupportEnum::cases();
 
         return view('admin.supports.index', [
