@@ -3,6 +3,7 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\User;
+use App\Repositories\Presenters\PaginationPresenter;
 use App\Repositories\UserRepositoryInterface;
 
 class UserRepository implements UserRepositoryInterface
@@ -13,7 +14,7 @@ class UserRepository implements UserRepositoryInterface
 
     }
 
-    public function getAll(string $filter = ''): array
+    public function getAll(string $filter = ''): PaginationPresenter
     {
         $users = $this->model
                         ->where(function ($query) use ($filter) {
@@ -21,9 +22,9 @@ class UserRepository implements UserRepositoryInterface
                                 $query->where('email', $filter);
                                 $query->Orwhere('name', 'LIKE', "%{$filter}%");
                             }
-                        })->get();
+                        })->paginate(5);
 
-        return $users->toArray();
+        return new PaginationPresenter($users);
     }
 
     public function findById(string $id): object|null

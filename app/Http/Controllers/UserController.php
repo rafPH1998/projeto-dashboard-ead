@@ -21,7 +21,7 @@ class UserController extends Controller
                     ->getAll($request->filter ?? '');        
    
         return view('admin.users.index', [
-            'users' => convertItemsOfArrayToObject($users)
+            'users' => $users
         ]);
     }
 
