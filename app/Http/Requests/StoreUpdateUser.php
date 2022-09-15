@@ -27,7 +27,6 @@ class StoreUpdateUser extends FormRequest
         $rules = [
             'name' => 'required|min:3|max:255|string',
             'email' => [
-                'email',
                 'required',
                 Rule::unique('users')->ignore($this->user)
             ],
@@ -57,8 +56,8 @@ class StoreUpdateUser extends FormRequest
     {
         return [
             'name' => 'nome',
-            'min' => 'mínimo',
-            'max' => 'máximo',
+            'min'  => 'mínimo',
+            'max'  => 'máximo',
         ];
     }
 
@@ -67,7 +66,6 @@ class StoreUpdateUser extends FormRequest
         return [
             'required' => 'Campo :attribute é obrigatório!',
             'min' => 'O campo :attribute deve conter o máximo de :min caracteres!',
-            'email' => 'O campo e-mail deve ser um endereço de e-mail válido!',
             'max' => 'O campo :attribute deve conter o máximo de :max caracteres!',
             'unique' => 'Esse e-mail já se encontra cadastrado na base do sistema!'
         ];

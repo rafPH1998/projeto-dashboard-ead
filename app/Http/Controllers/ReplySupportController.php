@@ -19,7 +19,8 @@ class ReplySupportController extends Controller
     {
         $user = auth()->user();
 
-        $support = $this->support_repository->findByIdSupport($supportId);
+        $support = $this->support_repository
+                        ->findByIdSupport($supportId);
 
         if (!$support) {
             return redirect()->back();

@@ -42,7 +42,7 @@ Route::prefix('/admin')
      * Routes Lessons
      */
 
-    Route::resource('/modules/{modules}/lessons', LessonController::class);
+    Route::resource('/modules/{modules}/lessons', LessonController::class)->except('show', 'update', 'destroy');
 
     /**
      * Routes Supports

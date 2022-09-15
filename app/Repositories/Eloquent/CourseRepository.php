@@ -30,11 +30,6 @@ class CourseRepository implements CourseRepositoryInterface
         return $this->course->find($id);
     }
 
-    public function create(array $data): object
-    {
-        return $this->course->create($data);
-    }
-
     public function update(string $id, array $data): object|null
     {
 
