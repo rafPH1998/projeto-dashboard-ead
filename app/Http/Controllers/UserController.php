@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUpdateUser;
+use App\Models\User;
 use App\Repositories\Eloquent\UploadFile;
 use App\Repositories\UserRepositoryInterface;
+use App\ValueObjects\Email;
 
 class UserController extends Controller
 {
@@ -15,7 +17,8 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $users = $this->repository->getAll($request->filter ?? '');        
+        $users = $this->repository
+                    ->getAll($request->filter ?? '');        
    
         return view('admin.users.index', [
             'users' => convertItemsOfArrayToObject($users)
@@ -27,20 +30,31 @@ class UserController extends Controller
         return view('admin.users.create');
     }
 
-    public function store(StoreUpdateUser $request, UploadFile $uploadFile)
+    public function store(StoreUpdateUser $request, UploadFile $uploadFile, User $user)
     {
-        $data = $request->validated();
-        $data['password'] = bcrypt($request->password);
+        try {
+            
+            $user->fill([
+                'name'     => $request->get('name'),
+                'email'    => new Email($request->get('email')),
+                'password' => $request->get('password'),
+                'image'    => $request->image
+            ]);
 
-        if ($request->image) {
-            $data['image'] = $uploadFile->store($request->image, 'users');
+            if ($user['image']) {
+                $user['image'] = $uploadFile->store($request->image, 'users');
+            }
+    
+            $user->save();
+    
+            return redirect()->route('users.index')
+                            ->with('success', 'Usuário cadastrado com sucesso');
+
+        } catch (\Throwable $th) {
+            
+            return redirect()->route('users.create')
+                             ->with('error', $th->getMessage());
         }
-
-        $this->repository->create($data);
-
-        return redirect()
-            ->route('users.index')
-            ->with('success', 'Usuário cadastrado com sucesso');
     }
 
     public function edit($id)
