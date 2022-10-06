@@ -22,7 +22,9 @@ class UserRepository implements UserRepositoryInterface
                                 $query->where('email', $filter);
                                 $query->Orwhere('name', 'LIKE', "%{$filter}%");
                             }
-                        })->paginate(5);
+                        })
+                        ->orderBy('id', 'desc')
+                        ->paginate(5);
 
         return new PaginationPresenter($users);
     }
