@@ -22,8 +22,7 @@ class CourseRepository implements CourseRepositoryInterface
                                 $query->Orwhere('name', 'LIKE', "%{$filter}%");
                             }
                         })
-                        ->whereDate('created_at', '>=', now()->subDays(4))     
-                        ->whereDate('created_at', '<=', now()->subDays(1))        
+                        ->today()
                         ->orderBy('id', 'DESC')
                         ->paginate(3);
 
