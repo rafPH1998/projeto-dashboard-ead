@@ -20,7 +20,9 @@ class CourseRepository implements CourseRepositoryInterface
                             if ($filter) {
                                 $query->Orwhere('name', 'LIKE', "%{$filter}%");
                             }
-                        })->get();
+                        })
+                        ->orderBy('id', 'DESC')
+                        ->get();
 
         return $courses->toArray();
     }
