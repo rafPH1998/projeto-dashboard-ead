@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquent;
 
 use App\Models\Course;
 use App\Repositories\CourseRepositoryInterface;
+use App\Repositories\Presenters\PaginationPresenter;
 
 class CourseRepository implements CourseRepositoryInterface
 {
@@ -13,7 +14,7 @@ class CourseRepository implements CourseRepositoryInterface
     ){}
 
 
-    public function getAll(string $filter = ''): array
+    public function getAll(string $filter = ''): PaginationPresenter
     {
         $courses = $this->course
                         ->where(function ($query) use ($filter) {
@@ -21,10 +22,12 @@ class CourseRepository implements CourseRepositoryInterface
                                 $query->Orwhere('name', 'LIKE', "%{$filter}%");
                             }
                         })
+                        ->whereDate('created_at', '>=', now()->subDays(4))     
+                        ->whereDate('created_at', '<=', now()->subDays(1))        
                         ->orderBy('id', 'DESC')
-                        ->get();
+                        ->paginate(3);
 
-        return $courses->toArray();
+        return new PaginationPresenter($courses);
     }
 
     public function findById(string $id): object|null
