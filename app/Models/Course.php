@@ -36,4 +36,15 @@ class Course extends Model
             get: fn ($value) => $value ? Storage::url($value) : null
         );
     }
+
+    public function scopeLastWeek()
+    {
+        return $this->whereDate('created_at', '>=', now()->subDays(4));
+    }
+
+    public function scopeToday()
+    {
+        return $this->whereDate('created_at', '=', now());
+    }
+
 }
