@@ -21,7 +21,7 @@ class CourseController extends Controller
                         ->getAll($request->filter ?? '');     
 
         return view('admin.courses.index', [
-            'courses' => convertItemsOfArrayToObject($courses)
+            'courses' => $courses
         ]); 
     }
 
