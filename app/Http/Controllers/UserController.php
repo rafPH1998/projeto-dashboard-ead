@@ -38,6 +38,7 @@ class UserController extends Controller
                 'name'     => $request->get('name'),
                 'email'    => new Email($request->get('email')),
                 'password' => $request->get('password'),
+                'cpf'      => $request->get('cpf'),
                 'image'    => $request->image
             ]);
 
