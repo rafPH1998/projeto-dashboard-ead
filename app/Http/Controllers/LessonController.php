@@ -16,13 +16,15 @@ class LessonController extends Controller
 
     public function index(Request $request, $moduleId)
     {
-        $module = $this->module_repository->findById($moduleId);
+        $module = $this->module_repository
+                    ->findById($moduleId);
 
         if (!$module) {
             return redirect()->back();
         }
         
-        $lessons = $this->lesson_repository->getAllByModule(
+        $lessons = $this->lesson_repository
+                        ->getAllByModule(
             $moduleId,
             $request->filter ?? ''
         );  
@@ -35,7 +37,8 @@ class LessonController extends Controller
 
     public function create($moduleId)
     {
-        $module = $this->module_repository->findById($moduleId);
+        $module = $this->module_repository
+                        ->findById($moduleId);
         if (!$module) {
             return redirect()->back();
         }
@@ -45,12 +48,14 @@ class LessonController extends Controller
 
     public function store(StoreUpdateLesson $request, $moduleId)
     {
-        $module = $this->module_repository->findById($moduleId);
+        $module = $this->module_repository
+                        ->findById($moduleId);
         if (!$module) {
             return redirect()->back();
         }
 
-        $module->lessons()->create($request->validated());
+        $module->lessons()
+                ->create($request->validated());
 
         return redirect()
                 ->route('lessons.index', $moduleId)
