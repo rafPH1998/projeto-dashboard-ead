@@ -17,6 +17,10 @@
     <input class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded" id="email" name="email" type="email" placeholder="E-mail" aria-label="Email" value="{{ $user->email ?? old('email') }}">
 </div>
 <div class="mt-2">
+    <label class="block text-sm text-gray-600" for="email">Cpf</label>
+    <input class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded" id="cpf" name="cpf" type="text" placeholder="CPF" aria-label="cpf" value="{{ $user->cpf ?? old('cpf') }}">
+</div>
+<div class="mt-2">
     <label class=" block text-sm text-gray-600" for="message">Senha</label>
     <input class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded" id="password" name="password" type="password" placeholder="Senha" aria-label="password">
 </div>
