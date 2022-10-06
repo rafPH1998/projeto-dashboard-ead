@@ -31,7 +31,8 @@
 
         <div class="relative w-full flex flex-col h-screen overflow-y-hidden">
             @include('admin.layouts._partials.header', [
-                'user' => $firstName
+                'user' => $firstName,
+                'avatar' => $user->image,
             ])
 
             <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
