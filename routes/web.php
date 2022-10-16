@@ -10,6 +10,7 @@ use App\Http\Controllers\{
     SupportController,
     ReplySupportController
 };
+use App\Http\Controllers\Auth\AuthGithubController;
 use App\Http\Controllers\Auth\AuthGoogleController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,9 @@ Route::get('/', function () {
 
 Route::get('login/google/redirect', [AuthGoogleController::class, 'loginGoogle'])->name('login.google');
 Route::get('auth/google/callback', [AuthGoogleController::class, 'authGoogle']);
+
+Route::get('login/github/redirect', [AuthGithubController::class, 'loginGithub'])->name('login.github');
+Route::get('auth/github/callback', [AuthGithubController::class, 'authGithub']);
 
 Route::prefix('/admin')
     ->middleware(['auth'])
