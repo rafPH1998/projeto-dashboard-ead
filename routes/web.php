@@ -10,14 +10,15 @@ use App\Http\Controllers\{
     SupportController,
     ReplySupportController
 };
-
+use App\Http\Controllers\Auth\AuthGoogleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-
     return view('welcome');
-  
 });
+
+Route::get('login/google/redirect', [AuthGoogleController::class, 'loginGoogle'])->name('login.google');
+Route::get('auth/google/callback', [AuthGoogleController::class, 'authGoogle']);
 
 Route::prefix('/admin')
     ->middleware(['auth'])
