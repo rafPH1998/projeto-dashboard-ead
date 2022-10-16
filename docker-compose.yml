@@ -19,11 +19,11 @@ services:
     
     # nginx
     nginx:
-        container_name: nginx
+        container_name: nginx-dashboard_ead
         image: nginx:alpine
         restart: unless-stopped
         ports: 
-            - "8989:80"
+            - "4040:80"
         volumes: 
             - ./:/var/www
             - ./docker/nginx/:/etc/nginx/conf.d/
