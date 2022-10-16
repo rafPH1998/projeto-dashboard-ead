@@ -53,7 +53,7 @@
             </div>
         </form>
 
-        <a href="{{ route('login.google') }}" class="mt-4 inline-flex items-center px-4 
+        <a href="{{ route('auth.social.redirect', ['driver' => 'google'])  }}" class="mt-4 inline-flex items-center px-4 
             py-2 bg-gray-800 border border-transparent 
             rounded-md font-semibold text-xs text-white 
             uppercase tracking-widest hover:bg-gray-700 
@@ -64,7 +64,7 @@
             <p class="ml-2">Login com o google</p>
         </a><br/>
 
-        <a href="{{ route('login.github') }}" class="mt-2 inline-flex items-center px-4 
+        <a href="{{ route('auth.social.redirect', ['driver' => 'github'])  }}" class="mt-2 inline-flex items-center px-4 
             py-2 bg-gray-800 border border-transparent 
             rounded-md font-semibold text-xs text-white 
             uppercase tracking-widest hover:bg-gray-700 
