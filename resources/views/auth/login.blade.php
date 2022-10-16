@@ -53,14 +53,26 @@
             </div>
         </form>
 
-        <a href="{{ route('login.google') }}" class="inline-flex items-center px-4 
+        <a href="{{ route('login.google') }}" class="mt-4 inline-flex items-center px-4 
             py-2 bg-gray-800 border border-transparent 
             rounded-md font-semibold text-xs text-white 
             uppercase tracking-widest hover:bg-gray-700 
             active:bg-gray-900 focus:outline-none focus:border-gray-900 
             focus:ring ring-gray-300 disabled:opacity-25 transition 
             ease-in-out duration-150">
-            Login com o google
+            <img src="/images/google.svg" alt="" style="width: 18px;">
+            <p class="ml-2">Login com o google</p>
+        </a><br/>
+
+        <a href="{{ route('login.github') }}" class="mt-2 inline-flex items-center px-4 
+            py-2 bg-gray-800 border border-transparent 
+            rounded-md font-semibold text-xs text-white 
+            uppercase tracking-widest hover:bg-gray-700 
+            active:bg-gray-900 focus:outline-none focus:border-gray-900 
+            focus:ring ring-gray-300 disabled:opacity-25 transition 
+            ease-in-out duration-150">
+            <img src="/images/github.svg" alt="" style="width: 18px;">
+            <p class="ml-2">Login com o github</p>
         </a>
 
     </x-auth-card>
