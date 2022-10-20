@@ -25,6 +25,7 @@
         
         @php 
         $user = auth()->user();
+        
         $firstName = explode(" ", $user->name);
         $firstName = current($firstName); 
         @endphp
