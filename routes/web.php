@@ -15,7 +15,7 @@ use App\Http\Controllers\Auth\AuthSocialController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Route::get('login/{driver}/redirect', [AuthSocialController::class, 'loginSocial'])->name('auth.social.redirect');
